@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FilterStyle = styled.aside`
     border: solid 1px #E5E5E5;
     margin-right: 16px;
-    min-height: 474px;
+    height: 474px;
     padding: 24px 0 14px 27px;
    
     & form{
