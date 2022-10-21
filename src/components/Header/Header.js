@@ -1,3 +1,4 @@
+import Members from "../Members/Members";
 import Filter from "../UI/Filter/Filter";
 import { HeaderStyle } from "./HeaderStyle";
 
@@ -9,10 +10,7 @@ const Header = () => {
 
             <section className="container-grid-header">
                 <Filter />
-              
-                <div id="container-members">
-                    <h1>teste</h1>
-                </div>
+                <Members />
             </section>
         </HeaderStyle>
     )
