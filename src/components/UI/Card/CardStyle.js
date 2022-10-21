@@ -21,6 +21,7 @@ export const CardStyle = styled.article`
         font-weight: 700;
         margin: 12px 0 16px 0;
         text-align: center;
+        word-wrap: break-word;
     }
 
     & span{
