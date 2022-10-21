@@ -30,6 +30,8 @@ export const FilterStyle = styled.aside`
         display: flex;
         font-size: 16px;
         margin-top: 8px;
+        cursor: pointer;
+        word-break: break-all;
     }
 
     & a{
