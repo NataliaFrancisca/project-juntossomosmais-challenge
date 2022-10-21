@@ -22,7 +22,8 @@ export const GlobalStyle = createGlobalStyle`
     label,
     legend,
     p,
-    span{
+    span,
+    select{
         font-family: 'Roboto', sans-serif;
     }
 
