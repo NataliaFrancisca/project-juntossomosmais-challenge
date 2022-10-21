@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const MembersStyle = styled.main`
-
     & menu{
         display: flex;
         justify-content: space-between;
@@ -31,10 +30,13 @@ export const MembersStyle = styled.main`
         outline: none;
     }
 
-
     & section.list-cards-members{
-        border: solid #E5E5E5 1px;
-        padding: 10px;
         margin: 16px 0 40px 0;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(272px, auto));
+        gap: 16px;
     }
+
+ 
 `
