@@ -1,6 +1,12 @@
+import { useEffect, useState } from "react";
+import Card from "../UI/Card/Card";
 import { MembersStyle } from "./MembersStyle";
 
+const dataFile = require("../../db/data.json");
+
 const Members = () => {
+
+    const [data, setData] = useState([]);
     return(
         <MembersStyle>
 
@@ -21,10 +27,10 @@ const Members = () => {
 
 
             <section className="list-cards-members">
-
+                {dataFile.results.slice(0,10).map((data, index) => (
+                    <Card dataCard={data} key={index} />
+                ))}
             </section>
-
-
 
         </MembersStyle>
     )
