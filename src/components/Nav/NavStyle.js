@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const NavStyle = styled.nav`
+    align-items: center;
     background-color: #F5F5F5;
     height: 96px;
     padding: 28px 156px;
@@ -29,14 +30,27 @@ export const NavStyle = styled.nav`
             font-size: 16px;
         }
 
-        @media screen and (max-width: 550px){
+        @media screen and (max-width: 650px){
             margin: 0;
         }
     }
 
-    @media screen and (max-width: 550px){
+    @media screen and (max-width: 980px){
+        padding: 24px 120px;
+    }
+
+    @media screen and (max-width: 780px){
+        padding: 24px 100px;
+    }
+
+    @media screen and (max-width: 680px){
+        padding: 24px 20px;
         grid-template-columns: 30% 60%;
-        padding: 28px 20px;
+        justify-content: space-between;
+
+        #logo{
+            width: 120px;
+        }
     }
 
 `
