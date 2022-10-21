@@ -1,8 +1,8 @@
-import { MemberStyle } from "./MembersStyle";
+import { MembersStyle } from "./MembersStyle";
 
 const Members = () => {
     return(
-        <MemberStyle>
+        <MembersStyle>
 
             <menu>
                 <span>Exibindo 9 de 25 items</span>
@@ -26,7 +26,7 @@ const Members = () => {
 
 
 
-        </MemberStyle>
+        </MembersStyle>
     )
 }
 
