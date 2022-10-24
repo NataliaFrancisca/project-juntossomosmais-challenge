@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FilterStyle } from "./FilterStyle"
+
+import {useSelector, useDispatch} from "react-redux";
 
 const Filter = () => {
 
-    const [elementsFilterSelected, setElementsFilterSelected] = useState([]);
+    const filterReducer = useSelector(state => state)
+    const dispatch = useDispatch();
 
     const onToggleElementFilter = (value) => {
-        const checkAlreadyAdded = elementsFilterSelected.some(element => element == value);
-        const removeFilter = elementsFilterSelected.filter(element => element !== value);
-        return checkAlreadyAdded ? setElementsFilterSelected(removeFilter) : setElementsFilterSelected([...elementsFilterSelected, value]);
+        const checkAlreadyAdded = filterReducer.some(element => element == value);
+        return checkAlreadyAdded ? dispatch({type: "filter/remove", payload: value}) : dispatch({type: "filter/add", payload: value});
     }
-
-    useEffect(() => {
-        console.log(elementsFilterSelected)
-    },[elementsFilterSelected])
-
+    
     return(
         <FilterStyle>
             <form>
