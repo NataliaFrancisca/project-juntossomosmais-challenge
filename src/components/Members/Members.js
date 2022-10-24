@@ -9,14 +9,12 @@ const dataFile = require("../../db/data.json");
 const Members = () => {
 
     const filterReducer = useSelector(state => state)
-
     const [data, setData] = useState([]);
-    const [dataUsingFilter, setDataUsingFilter] = useState([]);
+    const [currentSortType, setCurrentSortType] = useState();
 
     useEffect(() => {
         returnDataBasedOnFilter();
     },[])
-
 
     useEffect(() => {
         returnDataBasedOnFilter();
@@ -25,76 +23,40 @@ const Members = () => {
     const returnDataBasedOnFilter = () => {
         const baseValues = dataFile.results.slice(0,10);
 
-    
         const umGrandeTeste = baseValues.filter(data => {
             const state = data.location.state;
             const lowerCaseFilter = filterReducer.map(filter => filter.toLowerCase());
-
-            if(lowerCaseFilter.includes(state)){
-                return data;
-            }
+            return lowerCaseFilter.includes(state) && data;
         })
 
-        console.log(umGrandeTeste);
+        if(umGrandeTeste.length == 0){
+            const dataSorted = returnDataBasedOnSortType(baseValues);
+            setData(dataSorted);
+        }else{
+            const dataSorted = returnDataBasedOnSortType(umGrandeTeste);
+            setData(dataSorted);
+        }
+    }
 
-        setData(umGrandeTeste);
-
+    const returnDataBasedOnSortType = (dataToSort) => {
+        switch(currentSortType){
+            case "name":
+                return dataToSort.sort((a,b) => a.name.first.localeCompare(b.name.first));
+            case "state":
+                return dataToSort.sort((a,b) => a.location.state.localeCompare(b.location.state));
+            default:
+                return dataToSort;
+        }
+    }
     
-    }
-
-
-    // const [data, setData] = useState([]);
-    // const [dataOrderFilter, setDataOrderFilter] = useState([]);
-
-    // const filterReducer = useSelector(state => state)
-
-    // const getDataWithFilter = (data) => {
-    //     if(filterReducer.length > 0){
-
-    //         console.log("VAI PRA MERDA")
-    //         filterReducer.forEach(filter => {
-    //             const aa = data.filter(element => element.location.state == filter.toLowerCase());
-
-    //             if(aa.length == 0){
-    //                 setData(dataFile.results);
-    //             }else{
-    //                 console.log('meu deusss', aa);
-    //                 setData(aa)
-    //             }
-              
-    //         })
-
-
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getDataWithFilter(data);
-    // },[filterReducer])
-
-    const sortDataName = (data) => {
-        const dataTeste = data.slice(0,20);
-        const newData = dataTeste.sort((a,b) => a.name.first.localeCompare(b.name.first));
-        setData(newData)
-    }
-
-    const sortDataState = (data) => {
-        const dataTeste = data.slice(0,20);
-        const newData = dataTeste.sort((a,b) => a.location.state.localeCompare(b.location.state));
-        setData(newData);
-    }
-
-    // useEffect(() => {
-    //     const teste = sortDataName(data);
-    //     setData(teste);
-    // },[])
-
     const onChangeFilter = (event) => {
         const filterChoosed = event.target.value;
-        console.log(filterChoosed)
-        // const dataFiltered = filterChoosed == 'name' ? sortDataName(data) : sortDataState(data);
-        // setDataOrderFilter(dataFiltered);
+        setCurrentSortType(filterChoosed);
     }
+
+    useEffect(() => {
+        returnDataBasedOnFilter();
+    },[currentSortType])
 
     return(
         <MembersStyle>
