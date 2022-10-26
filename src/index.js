@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 
 import { Provider } from 'react-redux';
-import { reducerFilter } from './reducers';
-import { createStore } from "redux"
+import { reducerFilter, reducerSearchMember } from './reducers';
+import { combineReducers, createStore } from "redux"
 
-const store = createStore(reducerFilter);
+
+
+const rootReducer = combineReducers({reducerFilter, reducerSearchMember})
+const store = createStore(rootReducer);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
