@@ -3,14 +3,31 @@ import Card from "../UI/Card/Card";
 import { MembersStyle } from "./MembersStyle";
 
 import { useSelector } from "react-redux"
+import Pagination from "../UI/Pagination/Pagination";
 
 const dataFile = require("../../db/data.json");
 
 const Members = () => {
 
-    const filterReducer = useSelector(state => state)
+    const filterReducer = useSelector(state => state.reducerFilter)
+    const searchUser = useSelector(state => state.reducerSearchMember)
+
     const [data, setData] = useState([]);
+    const [viewMembers, setViewMembers] = useState([]);
     const [currentSortType, setCurrentSortType] = useState();
+
+    useEffect(() => {
+        if(searchUser.length > 0){
+            const newFilter = data.filter((value) => {
+                const valueSearch = searchUser.toLowerCase();             
+                return value.name.first.toLowerCase().includes(valueSearch) || value.name.last.toLowerCase().includes(valueSearch);
+            });
+
+            setData(newFilter);
+        }else{
+            returnDataBasedOnFilter();
+        }
+    },[searchUser])
 
     useEffect(() => {
         returnDataBasedOnFilter();
@@ -21,7 +38,7 @@ const Members = () => {
     },[filterReducer])
 
     const returnDataBasedOnFilter = () => {
-        const baseValues = dataFile.results.slice(0,10);
+        const baseValues = dataFile.results;
 
         const umGrandeTeste = baseValues.filter(data => {
             const state = data.location.state;
@@ -29,13 +46,15 @@ const Members = () => {
             return lowerCaseFilter.includes(state) && data;
         })
 
-        if(umGrandeTeste.length == 0){
-            const dataSorted = returnDataBasedOnSortType(baseValues);
-            setData(dataSorted);
-        }else{
+        if(umGrandeTeste.length !== 0){
             const dataSorted = returnDataBasedOnSortType(umGrandeTeste);
             setData(dataSorted);
+            return false;
         }
+
+        const dataSorted = returnDataBasedOnSortType(baseValues);
+        setData(dataSorted);
+     
     }
 
     const returnDataBasedOnSortType = (dataToSort) => {
@@ -58,6 +77,15 @@ const Members = () => {
         returnDataBasedOnFilter();
     },[currentSortType])
 
+
+    const onUpdateView = (data) => {
+        setViewMembers(data);
+    }
+
+    useEffect(() => {
+        console.log("data was updated", data)
+    },[data])
+
     return(
         <MembersStyle>
             <menu>
@@ -75,11 +103,12 @@ const Members = () => {
             </menu>
 
             <section className="list-cards-members">
-                {data.map((data, index) => (
+                {viewMembers.map((data, index) => (
                     <Card dataCard={data} key={index} />
                 ))}
             </section>
 
+            <Pagination dataToUsePagination={data} onUpdateViewMembers={onUpdateView} />
         </MembersStyle>
     )
 }
