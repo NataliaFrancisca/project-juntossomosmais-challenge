@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavStyle } from "./NavStyle"
 
 const Nav = () => {
 
-    const [userSearch, setUserSearch] = useState();
-
-    useEffect(() => {
-        console.log(userSearch)
-    },[userSearch])
+    const dispatch = useDispatch();
+    
+    const updateSearchInput = (value) => {
+        dispatch({type: 'search/member', payload: value})
+    }
 
     return(
         <NavStyle>
@@ -17,7 +18,7 @@ const Nav = () => {
 
             <label id="search-bar" htmlFor="input-search">
                 <img src="images/icon/i-search.svg" alt="search icon" />
-                <input type="text" placeholder="Buscar aqui" id="input-search" onChange={(event) => setUserSearch(event.target.value)} />
+                <input type="text" placeholder="Buscar aqui" id="input-search" onChange={(event) => updateSearchInput(event.target.value)} />
             </label>
         </NavStyle>
     )
