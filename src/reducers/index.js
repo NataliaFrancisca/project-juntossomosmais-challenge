@@ -8,3 +8,12 @@ export const reducerFilter = (state = [], action) => {
             return state;
     }
 }
+
+export const reducerSearchMember = (state = "", action) => {
+    switch(action.type){
+        case "search/member":
+            return action.payload;
+        default: 
+            return state;
+    }
+}
