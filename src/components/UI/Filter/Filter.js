@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from "react-redux";
 
 const Filter = () => {
 
-    const filterReducer = useSelector(state => state)
+    const filterReducer = useSelector(state => state.reducerFilter)
     const dispatch = useDispatch();
 
     const onToggleElementFilter = (value) => {
