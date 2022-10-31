@@ -15,18 +15,10 @@ const Members = () => {
     const [data, setData] = useState([]);
     const [viewMembers, setViewMembers] = useState([]);
     const [currentSortType, setCurrentSortType] = useState();
+    const [currentPaginationView, setCurrentPaginationView] = useState();
 
     useEffect(() => {
-        if(searchUser.length > 0){
-            const newFilter = data.filter((value) => {
-                const valueSearch = searchUser.toLowerCase();             
-                return value.name.first.toLowerCase().includes(valueSearch) || value.name.last.toLowerCase().includes(valueSearch);
-            });
-
-            setData(newFilter);
-        }else{
-            returnDataBasedOnFilter();
-        }
+        searchUserBrowserInput(data);
     },[searchUser])
 
     useEffect(() => {
@@ -36,6 +28,25 @@ const Members = () => {
     useEffect(() => {
         returnDataBasedOnFilter();
     },[filterReducer])
+
+
+    const updatePaginationSpan = (value) => {
+        setCurrentPaginationView(value);
+    }
+
+    const searchUserBrowserInput = (dataFiltered) => {
+        const baseValues = dataFile.results;
+
+        if(searchUser.length > 0){
+            const newFilter = dataFiltered.filter((value) => {
+                const valueSearch = searchUser.toLowerCase();             
+                return value.name.first.toLowerCase().includes(valueSearch) || value.name.last.toLowerCase().includes(valueSearch);
+            });
+            setData(newFilter);
+        }else{
+            setData(baseValues)
+        }
+    }
 
     const returnDataBasedOnFilter = () => {
         const baseValues = dataFile.results;
@@ -48,13 +59,12 @@ const Members = () => {
 
         if(umGrandeTeste.length !== 0){
             const dataSorted = returnDataBasedOnSortType(umGrandeTeste);
-            setData(dataSorted);
+            searchUserBrowserInput(dataSorted);
             return false;
         }
 
         const dataSorted = returnDataBasedOnSortType(baseValues);
-        setData(dataSorted);
-     
+        searchUserBrowserInput(dataSorted);
     }
 
     const returnDataBasedOnSortType = (dataToSort) => {
@@ -82,14 +92,10 @@ const Members = () => {
         setViewMembers(data);
     }
 
-    useEffect(() => {
-        console.log("data was updated", data)
-    },[data])
-
     return(
         <MembersStyle>
             <menu>
-                <span>Exibindo 9 de 25 items</span>
+                <span>{currentPaginationView}</span>
 
                 <form>
                     <label>Ordenar por:</label>
@@ -108,7 +114,7 @@ const Members = () => {
                 ))}
             </section>
 
-            <Pagination dataToUsePagination={data} onUpdateViewMembers={onUpdateView} />
+            <Pagination dataToUsePagination={data} onUpdateViewMembers={onUpdateView} onUpdatePaginationView={updatePaginationSpan}/>
         </MembersStyle>
     )
 }
