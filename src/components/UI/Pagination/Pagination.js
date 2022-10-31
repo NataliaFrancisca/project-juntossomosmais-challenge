@@ -5,7 +5,7 @@ import ReactPaginate from "react-paginate";
 
 const dataFile = require("../../../db/data.json");
 
-const Pagination = ({dataToUsePagination, onUpdateViewMembers}) => {
+const Pagination = ({dataToUsePagination, onUpdateViewMembers, onUpdatePaginationView}) => {
 
     const [pageNumber, setPageNumber] = useState(0);
 
@@ -22,11 +22,8 @@ const Pagination = ({dataToUsePagination, onUpdateViewMembers}) => {
     useEffect(() => {
         console.log("meu deus, preciso atualizar...")
         onUpdateViewMembers(displayUsers)
-    },[dataToUsePagination])
-
-    useEffect(() => {
-        onUpdateViewMembers(displayUsers)
-    },[pageNumber])
+        onUpdatePaginationView(`Exibindo ${displayUsers.length} de ${dataToUsePagination.length}`)
+    },[dataToUsePagination, pageNumber])
 
     return(
         <PaginationStyle>
