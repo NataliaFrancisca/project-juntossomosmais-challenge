@@ -1,11 +1,10 @@
 import { PaginationStyle } from "./PaginationStyle";
 
-import { useEffect, useRef, useState } from "react";
+import Card from "../Card/Card";
+import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
-const dataFile = require("../../../db/data.json");
-
-const Pagination = ({dataToUsePagination, onUpdateViewMembers, onUpdatePaginationView}) => {
+const Pagination = ({dataToUsePagination, onUpdatePaginationView}) => {
 
     const [pageNumber, setPageNumber] = useState(0);
 
@@ -15,18 +14,20 @@ const Pagination = ({dataToUsePagination, onUpdateViewMembers, onUpdatePaginatio
 
     const displayUsers = dataToUsePagination.slice(pagesVisited, pagesVisited + usersPerPage);
 
-    const changePage = ({selected}) => {
-        setPageNumber(selected);
-    }
+    const changePage = ({selected}) => setPageNumber(selected);
 
     useEffect(() => {
-        console.log("meu deus, preciso atualizar...")
-        onUpdateViewMembers(displayUsers)
-        onUpdatePaginationView(`Exibindo ${displayUsers.length} de ${dataToUsePagination.length}`)
+        return displayUsers.length !== usersPerPage ? onUpdatePaginationView(true, displayUsers.length) : onUpdatePaginationView(false, usersPerPage)
     },[dataToUsePagination, pageNumber])
 
     return(
         <PaginationStyle>
+            <section className="list-cards-members">
+                {displayUsers.map((data, index) => (
+                    <Card dataCard={data} key={index} />
+                ))}
+            </section>
+
             <ReactPaginate 
                 previousLabel={<img src='images/icon/previous.svg' />}
                 nextLabel={<img src='images/icon/next.svg' />}
