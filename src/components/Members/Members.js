@@ -1,105 +1,87 @@
 import { useEffect, useState } from "react";
-import Card from "../UI/Card/Card";
 import { MembersStyle } from "./MembersStyle";
 
 import { useSelector } from "react-redux"
 import Pagination from "../UI/Pagination/Pagination";
 
-const dataFile = require("../../db/data.json");
-
-const Members = () => {
+const Members = ({dataMembers}) => {
 
     const filterReducer = useSelector(state => state.reducerFilter)
     const searchUser = useSelector(state => state.reducerSearchMember)
-
-    const [data, setData] = useState([]);
-    const [viewMembers, setViewMembers] = useState([]);
-    const [currentSortType, setCurrentSortType] = useState();
+   
+    const [members, setMembers] = useState([...dataMembers]);
+    const [sortType, setSortType] = useState();
     const [currentPaginationView, setCurrentPaginationView] = useState();
 
-    useEffect(() => {
-        searchUserBrowserInput(data);
-    },[searchUser])
+    const onChangeSortType = (event) => setSortType(event.target.value);
+
+    const getMembersBasedOnCurrentSortType = (currentData) => {
+        switch(sortType){
+            case "name":
+                return currentData.sort((a,b) => a.name.first.localeCompare(b.name.first))
+            case "state":
+                return currentData.sort((a,b) => a.location.state.localeCompare(b.location.state))
+            default:
+                return currentData;
+        }
+    }
+
+    const updateDataMembers = () => {
+        const dataMembersUpdated = getDataWithFilterRules();
+        const checkExistValuesEqualToSearch = getMembersEqualCurrentSearch(dataMembersUpdated);
+
+        const finalDataMembersUpdates = checkExistValuesEqualToSearch ? checkExistValuesEqualToSearch : dataMembersUpdated;
+        setMembers(getMembersBasedOnCurrentSortType(finalDataMembersUpdates));
+    }
+
+    const getMembersEqualCurrentSearch = (currentMembersData) => {
+        if(searchUser.length > 0){
+            const searchFilter = currentMembersData.filter((member) => {
+               return member.name.first.toLowerCase().includes(searchUser)
+                || member.name.last.toLowerCase().includes(searchUser)
+            })
+            return searchFilter;
+        }
+        return false;
+    }
+
+    const getDataWithFilterRules = () => {
+        const hasValuesEqualToFilters = dataMembers.filter(member => {
+            const locationState = member.location.state;
+            return filterReducer.includes(locationState) && member;
+        })
+
+        return hasValuesEqualToFilters.length !== 0 ? hasValuesEqualToFilters : dataMembers;
+    }
+
+    const updatePaginationSpan = (shouldUpdateValue, numberOfMemberPerPage) => {
+        if(shouldUpdateValue && numberOfMemberPerPage !== currentPaginationView){
+            setCurrentPaginationView(numberOfMemberPerPage)
+        }else if(!shouldUpdateValue && numberOfMemberPerPage !== currentPaginationView){
+            setCurrentPaginationView(numberOfMemberPerPage)
+        }
+    }
 
     useEffect(() => {
-        returnDataBasedOnFilter();
+        updateDataMembers();
     },[])
 
     useEffect(() => {
-        returnDataBasedOnFilter();
-    },[filterReducer])
-
-
-    const updatePaginationSpan = (value) => {
-        setCurrentPaginationView(value);
-    }
-
-    const searchUserBrowserInput = (dataFiltered) => {
-        const baseValues = dataFile.results;
-
-        if(searchUser.length > 0){
-            const newFilter = dataFiltered.filter((value) => {
-                const valueSearch = searchUser.toLowerCase();             
-                return value.name.first.toLowerCase().includes(valueSearch) || value.name.last.toLowerCase().includes(valueSearch);
-            });
-            setData(newFilter);
-        }else{
-            setData(baseValues)
-        }
-    }
-
-    const returnDataBasedOnFilter = () => {
-        const baseValues = dataFile.results;
-
-        const umGrandeTeste = baseValues.filter(data => {
-            const state = data.location.state;
-            const lowerCaseFilter = filterReducer.map(filter => filter.toLowerCase());
-            return lowerCaseFilter.includes(state) && data;
-        })
-
-        if(umGrandeTeste.length !== 0){
-            const dataSorted = returnDataBasedOnSortType(umGrandeTeste);
-            searchUserBrowserInput(dataSorted);
-            return false;
-        }
-
-        const dataSorted = returnDataBasedOnSortType(baseValues);
-        searchUserBrowserInput(dataSorted);
-    }
-
-    const returnDataBasedOnSortType = (dataToSort) => {
-        switch(currentSortType){
-            case "name":
-                return dataToSort.sort((a,b) => a.name.first.localeCompare(b.name.first));
-            case "state":
-                return dataToSort.sort((a,b) => a.location.state.localeCompare(b.location.state));
-            default:
-                return dataToSort;
-        }
-    }
-    
-    const onChangeFilter = (event) => {
-        const filterChoosed = event.target.value;
-        setCurrentSortType(filterChoosed);
-    }
+        const dataUpdates = getMembersBasedOnCurrentSortType(dataMembers);
+        setMembers([...dataUpdates]);
+    },[sortType])
 
     useEffect(() => {
-        returnDataBasedOnFilter();
-    },[currentSortType])
-
-
-    const onUpdateView = (data) => {
-        setViewMembers(data);
-    }
+        updateDataMembers();
+    },[filterReducer, searchUser])
 
     return(
         <MembersStyle>
             <menu>
-                <span>{currentPaginationView}</span>
-
+                <span>Exibindo {currentPaginationView} de {members.length}</span>
                 <form>
                     <label>Ordenar por:</label>
-                    <select id="sort-list" onChange={(event) => onChangeFilter(event)}>
+                    <select id="sort-list" onChange={(event) => onChangeSortType(event)} defaultValue="name">
                         <optgroup>
                             <option value="name">Nome</option>
                             <option value="state">Estado</option>
@@ -108,13 +90,7 @@ const Members = () => {
                 </form>
             </menu>
 
-            <section className="list-cards-members">
-                {viewMembers.map((data, index) => (
-                    <Card dataCard={data} key={index} />
-                ))}
-            </section>
-
-            <Pagination dataToUsePagination={data} onUpdateViewMembers={onUpdateView} onUpdatePaginationView={updatePaginationSpan}/>
+            <Pagination dataToUsePagination={members} onUpdatePaginationView={updatePaginationSpan} />
         </MembersStyle>
     )
 }
