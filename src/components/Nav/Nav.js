@@ -7,7 +7,7 @@ const Nav = () => {
     const dispatch = useDispatch();
     
     const updateSearchInput = (value) => {
-        dispatch({type: 'search/member', payload: value})
+        dispatch({type: 'search/member', payload: value.toLowerCase()})
     }
 
     return(

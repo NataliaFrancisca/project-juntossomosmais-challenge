@@ -9,8 +9,8 @@ const Filter = () => {
     const dispatch = useDispatch();
 
     const onToggleElementFilter = (value) => {
-        const checkAlreadyAdded = filterReducer.some(element => element == value);
-        return checkAlreadyAdded ? dispatch({type: "filter/remove", payload: value}) : dispatch({type: "filter/add", payload: value});
+        const checkAlreadyAdded = filterReducer.some(element => element == value.toLowerCase());
+        return checkAlreadyAdded ? dispatch({type: "filter/remove", payload: value.toLowerCase()}) : dispatch({type: "filter/add", payload: value.toLowerCase()});
     }
     
     return(
