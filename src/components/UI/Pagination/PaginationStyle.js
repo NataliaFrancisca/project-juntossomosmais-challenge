@@ -2,9 +2,18 @@ import styled from "styled-components";
 
 export const PaginationStyle = styled.section`
     display: flex;
+    flex-direction: column;
     justify-content: center;
 
-    .paginationBttns{
+    & section.list-cards-members{
+        margin: 16px 0 40px 0;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(272px, auto));
+        gap: 16px;
+    }
+
+    & .paginationBttns{
         display: flex;
         align-items: baseline;
         justify-content: center;
