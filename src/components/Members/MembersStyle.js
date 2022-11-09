@@ -38,5 +38,18 @@ export const MembersStyle = styled.main`
         gap: 16px;
     }
 
+
+    @media screen and (max-width: 460px){
+        & form{
+            display: flex;
+            flex-direction: column;
+            margin: 18px 12px;
+        }
+
+        & select{
+            margin-left: 0;
+        }
+    }
+
  
 `

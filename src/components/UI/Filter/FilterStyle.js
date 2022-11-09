@@ -39,4 +39,10 @@ export const FilterStyle = styled.aside`
         font-size: 16px;
         margin-top: 10px;
     }
+
+    @media screen and (max-width: 800px){
+        margin-right: 0;
+        height: auto;
+        margin: 16px 0;
+    }
 `

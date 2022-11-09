@@ -23,11 +23,17 @@ export const HeaderStyle = styled.header`
         padding: 24px 120px;
     }
 
-    @media screen and (max-width: 780px){
+    @media screen and (max-width: 800px){
         padding: 24px 100px;
+
+        & section.container-grid-header{
+            grid-template-columns: 100%;
+        }
     }
 
     @media screen and (max-width: 680px){
         padding: 24px 20px;
     }
+
+
 `

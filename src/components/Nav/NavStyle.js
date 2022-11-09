@@ -39,7 +39,7 @@ export const NavStyle = styled.nav`
         padding: 24px 120px;
     }
 
-    @media screen and (max-width: 780px){
+    @media screen and (max-width: 800px){
         padding: 24px 100px;
     }
 
