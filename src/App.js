@@ -1,10 +1,9 @@
 import { GlobalStyle } from "./styles/Global";
 
 import Member from "./pages/Member/Member";
-import Nav from "./components/Nav/Nav";
-import Header from "./components/Header/Header";
+import Home from "./pages/Home/Home";
 
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom"
 
 function App() {
   return (
@@ -13,19 +12,10 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-       
-          <Route path="/" 
-          element={
-              <>
-                <Nav />
-                <Header />
-              </>} 
-          />
-
+          <Route path="/" element={<Navigate to={"/members"} />} />
+          <Route path="/members" element={<Home />} />
           <Route path="/members/:id" element={<Member />} />
-         
         </Routes>
-
       </BrowserRouter>
     
     </div>
