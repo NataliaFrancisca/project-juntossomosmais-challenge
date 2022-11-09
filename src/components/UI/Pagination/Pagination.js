@@ -12,18 +12,18 @@ const Pagination = ({dataToUsePagination, onUpdatePaginationView}) => {
     const pagesVisited = pageNumber * usersPerPage;
     const pageCount = Math.ceil(dataToUsePagination.length / usersPerPage);
 
-    const displayUsers = dataToUsePagination.slice(pagesVisited, pagesVisited + usersPerPage);
+    const displayMembers = dataToUsePagination.slice(pagesVisited, pagesVisited + usersPerPage);
 
     const changePage = ({selected}) => setPageNumber(selected);
 
     useEffect(() => {
-        return displayUsers.length !== usersPerPage ? onUpdatePaginationView(true, displayUsers.length) : onUpdatePaginationView(false, usersPerPage)
+        return displayMembers.length !== usersPerPage ? onUpdatePaginationView(true, displayMembers.length) : onUpdatePaginationView(false, usersPerPage)
     },[dataToUsePagination, pageNumber])
 
     return(
         <PaginationStyle>
             <section className="list-cards-members">
-                {displayUsers.map((data, index) => (
+                {displayMembers.map((data, index) => (
                     <Card dataCard={data} key={index} />
                 ))}
             </section>
