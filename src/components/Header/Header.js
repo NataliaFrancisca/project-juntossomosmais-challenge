@@ -6,12 +6,16 @@ import { HeaderStyle } from "./HeaderStyle";
 const Header = () => {
 
     const [members, setMembers] = useState();
+    const [errorFetch, setErrorFetch] = useState(false);
 
     useEffect(() => {
         fetch("http://localhost:9999/members")
             .then(res => res.json())
             .then(data => setMembers([...data]))
-            .catch(error => console.error(error))
+            .catch(error => {
+                setErrorFetch(true)
+                console.error(error)
+            })
     },[])
 
     return(
@@ -22,9 +26,10 @@ const Header = () => {
             <section className="container-grid-header">
                 <Filter />
 
-                {members ? <Members dataMembers={members} /> 
-                    : <p>Sorry, something wrong with request!</p>
-                }
+                {errorFetch &&<p>Desculpa, estamos tendo problemas com a requisição!</p>}         
+                
+                {!members && <p>Carregando dados....</p>}
+                {members && <Members dataMembers={members} />}
             </section>
         </HeaderStyle>
     )
