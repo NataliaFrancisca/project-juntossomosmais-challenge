@@ -9,6 +9,12 @@ export const CardStyle = styled.article`
     height: auto;
     width: 100%;
     cursor: pointer;
+    transition: all ease-in-out .4s;
+
+    &:hover{
+        background-color: #E5E5E5;
+        transition: all ease-in-out .4s;
+    }
 
     & img{
         border-radius: 50%;
@@ -43,4 +49,11 @@ export const CardStyle = styled.article`
         word-wrap: break-word;
         text-align: center;
     }
+
+    @media screen and (max-width: 850px){
+        h1{
+            font-size: 28px;
+        }
+    }
+
 `
