@@ -22,8 +22,8 @@ export const MemberStyle = styled.section`
         align-items: center;
 
         & img{
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             background: linear-gradient(to right, blue, green, orange, red);
             padding: 2px;
