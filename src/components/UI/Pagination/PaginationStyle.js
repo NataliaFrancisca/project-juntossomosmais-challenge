@@ -45,7 +45,8 @@ export const PaginationStyle = styled.section`
             transition: all .8s ease-in-out;
         }
 
-        & li.previous, li.next{
+        & li.previous,
+        li.next{
             width: 32px;
             height: 32px;
             background-color: #4A4A4A;
@@ -61,6 +62,18 @@ export const PaginationStyle = styled.section`
                 align-items: center;
                 justify-content: center;
             }
+
+           
+        }
+
+        & li.next.disabled,
+        li.previous.disabled{
+            background-color: grey;
+            cursor: not-allowed;
+        }
+
+        & li.next{
+            margin-right: 0px;
         }
         
    
