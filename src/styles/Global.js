@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     input,
     label,
     legend,
+    li,
     p,
     span,
     select{
