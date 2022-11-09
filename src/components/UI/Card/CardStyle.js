@@ -5,8 +5,10 @@ export const CardStyle = styled.article`
     border: solid #E5E5E5 1px;
     display: flex;
     flex-direction: column;
-    height: 310px;
+    min-height: 310px;
+    height: auto;
     width: 100%;
+    cursor: pointer;
 
     & img{
         border-radius: 50%;
