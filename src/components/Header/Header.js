@@ -26,7 +26,7 @@ const Header = () => {
             <section className="container-grid-header">
                 <Filter />
 
-                {errorFetch &&<p>Desculpa, estamos tendo problemas com a requisição!</p>}         
+                {errorFetch &&<p>Desculpa, estamos com problemas na requisição!</p>}         
                 
                 {!members && <p>Carregando dados....</p>}
                 {members && <Members dataMembers={members} />}
