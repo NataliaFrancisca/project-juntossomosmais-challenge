@@ -18,6 +18,8 @@ export const MemberStyle = styled.section`
         margin-bottom: 10px;
     }
 
+    
+
     & header{
         align-items: center;
 
@@ -69,6 +71,28 @@ export const MemberStyle = styled.section`
             text-transform: lowercase;
         }
     }
+
+    @media screen and (max-width: 700px){
+        & header, main{
+            width: 90%;
+        }
+    }
+
+    @media screen and (max-width: 520px){
+        & header{
+            flex-direction: column;
+            padding: 40px 10px;
+
+            div.details-header{
+                align-items: center;
+            }
+        }
+
+        & main{
+            padding: 40px 20px;
+        }
+    }
+       
        
 
 
