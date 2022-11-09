@@ -1,7 +1,9 @@
 import { CardStyle } from "./CardStyle";
 
+import {Link} from "react-router-dom"
+
 const Card = ({dataCard}) => {
-    const {name, location, picture} = dataCard;
+    const {name, location, picture, email} = dataCard;
     const {city, state, postcode} = location;
 
     const getStreet = () => {
@@ -21,6 +23,8 @@ const Card = ({dataCard}) => {
 
             <span className="street">{getStreet()}</span>
             <span className="address-details">{city} <br /> {state} - CEP: {postcode}</span>
+
+            <Link to={`/members/${email}`}>Detalhes</Link>
         </CardStyle>
     )
 }
