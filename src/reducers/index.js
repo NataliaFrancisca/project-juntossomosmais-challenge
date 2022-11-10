@@ -1,9 +1,14 @@
-export const reducerFilter = (state = [], action) => {
+export const reducerFilter = (state = {state: [], gender: []}, action) => {
     switch(action.type){
-        case 'filter/add':
-            return [...state, action.payload];
-        case 'filter/remove':
-            return state.filter(filter => filter !== action.payload);
+        case 'filter/add/state':
+            return {...state, state: [...state.state, action.payload]};
+        case 'filter/remove/state':
+            return {...state, state: state.state.filter(filter => filter !== action.payload)};
+
+        case 'filter/add/gender':
+            return {...state, gender: [...state.gender, action.payload]};
+        case 'filter/remove/gender':
+            return {...state, gender: state.gender.filter(filter => filter !== action.payload)};
         default:
             return state;
     }
