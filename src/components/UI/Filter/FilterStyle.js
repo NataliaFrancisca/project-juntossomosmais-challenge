@@ -37,6 +37,7 @@ export const FilterStyle = styled.aside`
     & a{
         color: #222D39;
         font-size: 16px;
+        font-weight: 600;
         margin-top: 10px;
         cursor: pointer;
         transition: all ease-in-out .4s;
