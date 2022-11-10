@@ -28,7 +28,7 @@ const Header = () => {
 
                 {errorFetch &&<p>Desculpa, estamos com problemas na requisição!</p>}         
                 
-                {!members && <p>Carregando dados....</p>}
+                {!members && !errorFetch && <p>Carregando dados....</p>}
                 {members && <Members dataMembers={members} />}
             </section>
         </HeaderStyle>
