@@ -24,12 +24,15 @@ const Header = () => {
             <h1>Lista de membros</h1>
 
             <section className="container-grid-header">
-                <Filter />
-
                 {errorFetch &&<p>Desculpa, estamos com problemas na requisição!</p>}         
-                
                 {!members && !errorFetch && <p>Carregando dados....</p>}
-                {members && <Members dataMembers={members} />}
+                
+                {members && 
+                    <>
+                        <Filter dataMembers={members} />
+                        <Members dataMembers={members} />
+                    </>
+                }
             </section>
         </HeaderStyle>
     )
