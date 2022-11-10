@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const FilterStyle = styled.aside`
     border: solid 1px #E5E5E5;
     margin-right: 16px;
-    height: 474px;
+    min-height: 474px;
+    height: auto;
     padding: 24px 0 14px 27px;
    
     & form{
@@ -38,6 +39,13 @@ export const FilterStyle = styled.aside`
         color: #222D39;
         font-size: 16px;
         margin-top: 10px;
+        cursor: pointer;
+        transition: all ease-in-out .4s;
+
+        &:hover{
+            text-decoration: underline;
+            transition: all ease-in-out .4s;
+        }
     }
 
     @media screen and (max-width: 800px){
