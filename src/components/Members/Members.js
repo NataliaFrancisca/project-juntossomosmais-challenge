@@ -48,7 +48,15 @@ const Members = ({dataMembers}) => {
     const getDataWithFilterRules = () => {
         const hasValuesEqualToFilters = dataMembers.filter(member => {
             const locationState = member.location.state;
-            return filterReducer.includes(locationState) && member;
+            const memberGender = member.gender == 'female' ? "feminino" : "masculino";
+            
+            if(filterReducer.gender.length == 0 && filterReducer.state.length > 0){
+                return filterReducer.state.includes(locationState) && member;
+            }else if(filterReducer.gender.length > 0 && filterReducer.state.length == 0){
+                return filterReducer.gender.includes(memberGender) && member;
+            }else{
+                return (filterReducer.state.includes(locationState) && filterReducer.gender.includes(memberGender)) && member;
+            }
         })
 
         return hasValuesEqualToFilters.length !== 0 ? hasValuesEqualToFilters : dataMembers;
