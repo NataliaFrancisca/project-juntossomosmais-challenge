@@ -38,6 +38,7 @@ const Filter = ({dataMembers}) => {
     const listOfStates = useMemo(() => {
         return dataMembers.reduce(getState, [])
         .filter(state => !['São Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Espirito Santo', 'Bahia'].includes(state))
+        .sort((a,b) => a.localeCompare(b))
     },[])
 
     return(
@@ -100,8 +101,6 @@ const Filter = ({dataMembers}) => {
                     Bahia
                 </label>
 
-                <a onClick={() => setShouldShowAllFilterList(!shouldShowAllFilterList)}>Ver todos</a>
-
                 {shouldShowAllFilterList && listOfStates.map(state => (
                     <label>
                         <input
@@ -115,6 +114,10 @@ const Filter = ({dataMembers}) => {
                     </label>
                 ))}
                 
+                <a onClick={() => setShouldShowAllFilterList(!shouldShowAllFilterList)}>
+                    {!shouldShowAllFilterList ? "Ver todos" : "Esconder"}
+                </a>
+
             </form>
         </FilterStyle>
     )
