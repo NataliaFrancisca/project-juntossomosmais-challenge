@@ -1,14 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState, useMemo } from "react";
 import { FilterStyle } from "./FilterStyle"
 
 import {useSelector, useDispatch} from "react-redux";
 
-const Filter = () => {
-    const allCheckBoxInputs = Array.from(document.querySelectorAll(`input.checkbox-input`));
-
+const Filter = ({dataMembers}) => {
+   
     const filterReducer = useSelector(state => state.reducerFilter)
     const dispatch = useDispatch();
+
+    const [shouldShowAllFilterList, setShouldShowAllFilterList] = useState(false);
+
     const formRef = useRef();
+    const allCheckBoxInputs = Array.from(document.querySelectorAll(`input.checkbox-input`));
 
     const onToggleElementFilter = (value) => {
         const checkAlreadyAdded = filterReducer.some(element => element == value.toLowerCase());
@@ -19,6 +22,23 @@ const Filter = () => {
         const value = input.value.toLowerCase();
         return filterReducer.includes(value) ? input.checked = true : false;
     })
+
+    const transformStringAtCaptalize = (string) => {
+        const words = string.split(" ");
+        const upperCaseWords = words.map(word => word.at(0).toUpperCase() + word.slice(1, word.length));
+        return upperCaseWords.join(" ");
+    }
+
+    const getState = (total, member) => {
+        const state = transformStringAtCaptalize(member.location.state);
+        const exist = total.some(findState => findState == state);
+        return !exist ? [...total, state] : total;
+    }
+
+    const listOfStates = useMemo(() => {
+        return dataMembers.reduce(getState, [])
+        .filter(state => !['São Paulo', 'Rio de Janeiro', 'Minas Gerais', 'Espirito Santo', 'Bahia'].includes(state))
+    },[])
 
     return(
         <FilterStyle>
@@ -80,7 +100,21 @@ const Filter = () => {
                     Bahia
                 </label>
 
-                <a>Ver todos</a>
+                <a onClick={() => setShouldShowAllFilterList(!shouldShowAllFilterList)}>Ver todos</a>
+
+                {shouldShowAllFilterList && listOfStates.map(state => (
+                    <label>
+                        <input
+                            className="checkbox-input" 
+                            type="checkbox"
+                            name="state"
+                            value={state}
+                            onChange={(event) => onToggleElementFilter(event.target.value)}
+                        />
+                        {state}
+                    </label>
+                ))}
+                
             </form>
         </FilterStyle>
     )
