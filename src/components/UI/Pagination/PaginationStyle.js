@@ -68,7 +68,7 @@ export const PaginationStyle = styled.section`
 
         & li.next.disabled,
         li.previous.disabled{
-            background-color: grey;
+            background-color: #E5E5E5;
             cursor: not-allowed;
         }
 
