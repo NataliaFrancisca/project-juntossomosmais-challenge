@@ -21,6 +21,10 @@ const Members = ({dataMembers}) => {
                 return currentData.sort((a,b) => a.name.first.localeCompare(b.name.first))
             case "state":
                 return currentData.sort((a,b) => a.location.state.localeCompare(b.location.state))
+            case "age-company-decreasing":
+                return currentData.sort((a,b) => a.registered.age - b.registered.age)
+            case "age-company-crescent":
+                return currentData.sort((a,b) => b.registered.age - a.registered.age)
             default:
                 return currentData;
         }
@@ -29,7 +33,6 @@ const Members = ({dataMembers}) => {
     const updateDataMembers = () => {
         const dataMembersUpdated = getDataWithFilterRules();
         const checkExistValuesEqualToSearch = getMembersEqualCurrentSearch(dataMembersUpdated);
-
         const finalDataMembersUpdates = checkExistValuesEqualToSearch ? checkExistValuesEqualToSearch : dataMembersUpdated;
         setMembers(getMembersBasedOnCurrentSortType(finalDataMembersUpdates));
     }
@@ -75,7 +78,7 @@ const Members = ({dataMembers}) => {
     },[])
 
     useEffect(() => {
-        const dataUpdates = getMembersBasedOnCurrentSortType(dataMembers);
+        const dataUpdates = getMembersBasedOnCurrentSortType(members);
         setMembers([...dataUpdates]);
     },[sortType])
 
@@ -93,6 +96,8 @@ const Members = ({dataMembers}) => {
                         <optgroup>
                             <option value="name">Nome</option>
                             <option value="state">Estado</option>
+                            <option value="age-company-decreasing">Menor tempo de empresa</option>
+                            <option value="age-company-crescent">Maior tempo de empresa</option>
                         </optgroup>
                     </select>
                 </form>
