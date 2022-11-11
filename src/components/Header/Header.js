@@ -23,10 +23,10 @@ const Header = () => {
             <span className="pagination">Home &gt; Usuários &gt; Detalhes</span>
             <h1>Lista de membros</h1>
 
+            {errorFetch &&<p>Desculpa, estamos com problemas na requisição!</p>}         
+            {!members && !errorFetch && <p>Carregando dados....</p>}
+
             <section className="container-grid-header">
-                {errorFetch &&<p>Desculpa, estamos com problemas na requisição!</p>}         
-                {!members && !errorFetch && <p>Carregando dados....</p>}
-                
                 {members && 
                     <>
                         <Filter dataMembers={members} />
