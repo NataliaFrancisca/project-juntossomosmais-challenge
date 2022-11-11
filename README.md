@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# 👩🏽‍💻 Frontend Challenge - Juntos Somos Mais
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esse projeto é um [desafio](https://github.com/juntossomosmais/frontend-challenge) de front-end da empresa Juntos Somos Mais.
 
-## Available Scripts
+O projeto foi muito desafiador, e nele consegui desenvolver os conceitos que já sabia, quebrei bastante a cabeça para lidar com os diferentes filtros. 
 
-In the project directory, you can run:
 
-### `npm start`
+## Stack utilizada
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Front-end:** 
+- React, 
+- React-Router,
+- React-Pagination,
+- Redux, 
+- Styled-components
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Back-end:** 
+- Node, 
+- Express
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Melhorias
 
-### `npm run build`
+Algumas melhorias para o futuro:
+- [ ]  Melhorar os códigos que lidam com o array de dados dos membros, no momento só são 200 elementos, mas se esse número crescer poderia ter problemas de performance.
+- [ ]  A página de Membro precisa de um design mais elegante
+- [ ]  Melhorar os códigos do redux, estão todos juntos no momento.
+- [ ]  Organizar  o código de acordo com o [guia de front-end](https://github.com/juntossomosmais/frontend-guideline)
+- [ ]  Criar uma melhor mensagem para erro de requisição dos dados; e mensagem para quando o membro não for encontrado
+- [ ]  Como não tenho tanto conhecimento sobre testes, acabei não fazendo nenhum. Mas no futuro pretendo implementar testes no projeto.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Screenshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Página de Membros](https://firebasestorage.googleapis.com/v0/b/github-images-6c299.appspot.com/o/juntossomosmais_screenshot.png?alt=media&token=ffa24d49-a22c-4b81-8d91-570c1bae7144)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Página de Membro](https://firebasestorage.googleapis.com/v0/b/github-images-6c299.appspot.com/o/juntossomosmais_screenshot_member.png?alt=media&token=c1c307b5-0630-42d8-b67d-233b292ce1b1)
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
