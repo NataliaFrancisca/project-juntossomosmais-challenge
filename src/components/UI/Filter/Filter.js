@@ -4,21 +4,21 @@ import { FilterStyle } from "./FilterStyle"
 import ElementFilter from "./ElementFilter";
 
 const Filter = ({dataMembers}) => {
-   
+
     const transformStringAtCaptalize = (string) => {
         const words = string.split(" ");
         const upperCaseWords = words.map(word => word.at(0).toUpperCase() + word.slice(1, word.length));
         return upperCaseWords.join(" ");
     }
 
-    const getState = (total, member) => {
+    const getListOfStates = (total, member) => {
         const state = transformStringAtCaptalize(member.location.state);
         const exist = total.some(findState => findState == state);
         return !exist ? [...total, state] : total;
     }
 
     const listOfStates = useMemo(() => {
-        return dataMembers.reduce(getState, [])
+        return dataMembers.reduce(getListOfStates, [])
         .sort((a,b) => a.localeCompare(b))
     },[])
 
