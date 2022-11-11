@@ -1,13 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 const ElementFilter = ({listFilters, nameFilter, typeFilter}) => {
 
     const formRef = useRef();
-
     const [shouldShowAllFilterList, setShouldShowAllFilterList] = useState(false);
-
-    const allCheckBoxInputs = Array.from(document.querySelectorAll(`input.checkbox-input`));
 
     const filterReducer = useSelector(state => state.reducerFilter)
     const dispatch = useDispatch();
@@ -17,13 +14,16 @@ const ElementFilter = ({listFilters, nameFilter, typeFilter}) => {
         return checkAlreadyAdded ? dispatch({type: `filter/remove/${typeFilter}`, payload: value.toLowerCase()}) : dispatch({type: `filter/add/${typeFilter}`, payload: value.toLowerCase()});
     }
 
-    allCheckBoxInputs.forEach((input) => {
-        const value = input.value.toLowerCase();
-        return [
-            filterReducer.state.includes(value) ? input.checked = true : false,
-            filterReducer.gender.includes(value) ? input.checked = true : false
-        ]
-    })
+    useEffect(() => {
+        const allCheckBoxInputs = Array.from(document.querySelectorAll(`input.checkbox-input`));
+
+        allCheckBoxInputs.forEach((input) => {
+            const value = input.value.toLowerCase();
+            return filterReducer.state.includes(value) ? input.checked = true : false &
+            filterReducer.gender.includes(value) ? input.checked = true : false  
+        })
+
+    },[shouldShowAllFilterList])
 
     return(
         <>
