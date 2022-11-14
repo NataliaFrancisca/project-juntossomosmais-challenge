@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavStyle } from "./NavStyle"
 
@@ -17,7 +16,7 @@ const Nav = () => {
             </a>
 
             <label id="search-bar" htmlFor="input-search">
-                <img src="images/icon/i-search.svg" alt="search icon" />
+                <img src="images/icon/i-search.svg" alt="icone de pesquisa" />
                 <input type="text" placeholder="Buscar aqui" id="input-search" onChange={(event) => updateSearchInput(event.target.value)} />
             </label>
         </NavStyle>

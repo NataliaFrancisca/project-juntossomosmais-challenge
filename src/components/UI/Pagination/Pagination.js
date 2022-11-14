@@ -29,8 +29,8 @@ const Pagination = ({dataToUsePagination, onUpdatePaginationView}) => {
             </section>
 
             <ReactPaginate 
-                previousLabel={<img src='images/icon/previous.svg' />}
-                nextLabel={<img src='images/icon/next.svg' />}
+                previousLabel={<img src='images/icon/previous.svg' alt="botão de anterior"/>}
+                nextLabel={<img src='images/icon/next.svg' alt="botão de próximo"/>}
                 pageCount={pageCount}
                 onPageChange={changePage}
                 containerClassName={"paginationBttns"}

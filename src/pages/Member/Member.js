@@ -11,7 +11,7 @@ const Member = () => {
         .then(res => res.json())
         .then(data => setMemberData(data))
         .catch(error => console.error(error))
-    },[])
+    },[id])
 
     const formatDate = (date) => {
         const formatedDate = new Date(date);
@@ -27,7 +27,7 @@ const Member = () => {
     return(
         <MemberStyle>
                 <header>
-                    <img src={memberData?.picture.large} />
+                    <img src={memberData?.picture.large} alt="Foto de perfil"/>
                     <div className="details-header">
                         <h1>{memberData?.name.first} {memberData?.name.last}</h1>
                         <a href={`malito:${memberData?.email}?subject=Assunto`}>{memberData?.email}</a>

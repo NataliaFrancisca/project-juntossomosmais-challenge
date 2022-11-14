@@ -17,7 +17,7 @@ const Card = ({dataCard}) => {
 
     return(
         <CardStyle onClick={() => navigate(`/members/${email}`)}>
-            <img src={picture.large} />
+            <img src={picture.large} alt="foto de perfil"/>
 
             <h1>{name.first} {name.last}</h1>
 
