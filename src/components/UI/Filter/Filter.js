@@ -13,7 +13,7 @@ const Filter = ({dataMembers}) => {
 
     const getListOfStates = (total, member) => {
         const state = transformStringAtCaptalize(member.location.state);
-        const exist = total.some(findState => findState == state);
+        const exist = total.some(findState => findState === state);
         return !exist ? [...total, state] : total;
     }
 
@@ -24,7 +24,6 @@ const Filter = ({dataMembers}) => {
 
     return(
         <FilterStyle>
-
             <ElementFilter listFilters={listOfStates} nameFilter="Por Estado:" typeFilter="state" />
             <br />
             <ElementFilter listFilters={['Feminino', 'Masculino']} nameFilter="Por Gênero:" typeFilter="gender" />
