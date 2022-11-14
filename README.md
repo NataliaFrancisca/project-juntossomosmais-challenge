@@ -31,7 +31,38 @@ Algumas melhorias para o futuro:
 
 ## Screenshots
 
-![Página de Membros](https://firebasestorage.googleapis.com/v0/b/github-images-6c299.appspot.com/o/juntossomosmais_screenshot.png?alt=media&token=ffa24d49-a22c-4b81-8d91-570c1bae7144)
+![Página](https://firebasestorage.googleapis.com/v0/b/github-images-6c299.appspot.com/o/juntossomosmais.png?alt=media&token=a7afe770-4a6c-44d6-930a-482ab1e10862)
 
-![Página de Membro](https://firebasestorage.googleapis.com/v0/b/github-images-6c299.appspot.com/o/juntossomosmais_screenshot_member.png?alt=media&token=c1c307b5-0630-42d8-b67d-233b292ce1b1)
+
+## Rodando localmente
+
+Para que você tenha acesso aos dados que serão utilizados no projeto, vai ser necessário fazer as etapas da instalação da API
+
+➡[NodeJS API - Juntos Somos Mais](https://github.com/NataliaFrancisca/api-juntossomosmais-challenge)
+
+Depois de fazer as etapas da API, agora você pode seguir a instalação do Front-end ou você pode acessar o projeto diretamente pelo link  https://challenge-juntossomosmais.vercel.app/members
+
+Clone o projeto
+
+```bash
+  git clone https://github.com/NataliaFrancisca/challenge-juntossomosmais
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd challenge-juntossomosmais
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run start
+```
 
