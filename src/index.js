@@ -6,11 +6,8 @@ import { Provider } from 'react-redux';
 import { reducerFilter, reducerSearchMember } from './reducers';
 import { combineReducers, createStore } from "redux"
 
-
-
 const rootReducer = combineReducers({reducerFilter, reducerSearchMember})
 const store = createStore(rootReducer);
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
