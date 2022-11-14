@@ -28,6 +28,7 @@ export const MembersStyle = styled.main`
         margin-left: 6px;
         background-color: transparent;
         outline: none;
+        width: 100px;
     }
 
     & section.list-cards-members{
