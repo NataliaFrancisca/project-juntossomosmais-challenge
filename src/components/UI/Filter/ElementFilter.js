@@ -26,8 +26,8 @@ const ElementFilter = ({listFilters, nameFilter, typeFilter}) => {
     },[shouldShowAllFilterList])
 
     return(
-        <>
-            <form ref={formRef}>
+        <form ref={formRef}>
+            <fieldset>
                 <legend>{nameFilter}</legend>
 
                 {listFilters.slice(0,5).map(state => (
@@ -35,7 +35,7 @@ const ElementFilter = ({listFilters, nameFilter, typeFilter}) => {
                         <input
                             className="checkbox-input" 
                             type="checkbox"
-                            name="state"
+                            name={typeFilter}
                             value={state}
                             onChange={(event) => onToggleElementFilter(event.target.value)}
                         />
@@ -48,23 +48,21 @@ const ElementFilter = ({listFilters, nameFilter, typeFilter}) => {
                         <input
                             className="checkbox-input" 
                             type="checkbox"
-                            name="state"
+                            name={typeFilter}
                             value={state}
                             onChange={(event) => onToggleElementFilter(event.target.value)}
                         />
                         {state}
                     </label>
                 ))} 
+            </fieldset>
 
-                {listFilters.length > 5 &&  
-                    <a onClick={() => setShouldShowAllFilterList(!shouldShowAllFilterList)}>
-                        {!shouldShowAllFilterList ? "Ver todos" : "Esconder"}
-                    </a> 
-                }
-               
-            </form>
-             
-        </>
+            {listFilters.length > 5 &&  
+                <a onClick={() => setShouldShowAllFilterList(!shouldShowAllFilterList)}>
+                    {!shouldShowAllFilterList ? "Ver todos" : "Esconder"}
+                </a> 
+            }
+        </form>
     )
 }
 
