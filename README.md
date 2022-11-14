@@ -45,7 +45,7 @@ Depois de fazer as etapas da API, agora você pode seguir a instalação do Fron
 Clone o projeto
 
 ```bash
-  git clone https://github.com/NataliaFrancisca/challenge-juntossomosmais
+  git clone https://github.com/NataliaFrancisca/project-juntossomosmais-challenge
 ```
 
 Entre no diretório do projeto
