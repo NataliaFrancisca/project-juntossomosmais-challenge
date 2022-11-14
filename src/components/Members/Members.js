@@ -51,7 +51,7 @@ const Members = ({dataMembers}) => {
     const getDataWithFilterRules = () => {
         const hasValuesEqualToFilters = dataMembers.filter(member => {
             const locationState = member.location.state;
-            const memberGender = member.gender == 'female' ? "feminino" : "masculino";
+            const memberGender = member.gender === 'female' ? "feminino" : "masculino";
             
             if(filterReducer.gender.length == 0 && filterReducer.state.length > 0){
                 return filterReducer.state.includes(locationState) && member;
@@ -75,7 +75,7 @@ const Members = ({dataMembers}) => {
 
     useEffect(() => {
         updateDataMembers();
-    },[])
+    })
 
     useEffect(() => {
         const dataUpdates = getMembersBasedOnCurrentSortType(members);
@@ -91,7 +91,7 @@ const Members = ({dataMembers}) => {
             <menu>
                 <span>Exibindo {currentPaginationView} de {members.length}</span>
                 <form>
-                    <label>Ordenar por:</label>
+                    <label htmlFor="sort-list">Ordenar por:</label>
                     <select id="sort-list" onChange={(event) => onChangeSortType(event)} defaultValue="name">
                         <optgroup>
                             <option value="name">Nome</option>
