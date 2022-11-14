@@ -3,7 +3,7 @@ import { FooterStyle } from "./FooterStyle";
 const Footer = () => {
     return(
         <FooterStyle>
-            <img src="images/juntossomosmais_logo_footer.svg" className="logo-footer" alt="logo"/>
+            <img src="images/juntossomosmais_logo_footer.svg" className="logo-footer" alt="juntos somos mais logo"/>
 
             <p>Juntos Somos Mais Fidelização S.A.</p>
 
@@ -11,15 +11,15 @@ const Footer = () => {
 
             <div>
                 <a href="/">
-                    <img src="images/icon/facebook-icon.svg" />
+                    <img src="images/icon/facebook-icon.svg" alt="facebook logo"/>
                 </a>
 
                 <a href="/">
-                    <img src="images/icon/linkedin-icon.svg" />
+                    <img src="images/icon/linkedin-icon.svg" alt="linkedin logo" />
                 </a>
 
                 <a href="/">
-                    <img src="images/icon/instagram-icon.svg" />
+                    <img src="images/icon/instagram-icon.svg" alt="instagram logo" />
                 </a>
             </div>
         </FooterStyle>
